@@ -1,0 +1,41 @@
+name: Build and Push Docker Image to Docker Hub
+
+on: 
+  push:
+    branches: -main
+
+jobs:
+  push_to_registry:
+    name: push docker image to hub
+    runs-on: ubuntu-latest
+    steps:
+      - name: check repository
+        uses: actions/checkout@v2
+
+      - name: login to docker registry
+        uses: docker/login-action@v1
+        with:
+          username: ${{secrets.DOCKERHUB_azadeh7049}}
+          password: ${{secrets.DOCKERHUB_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}}
+
+      - name: build and push docker image to registry
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: azadeh/capstone:latest
+
+      - name: update kubeconfig
+        run: aws eks update-kubeconfig --name $EKS_CLUSTER_NAME --region $AWS_REGION
+
+    - name: Deploy to EKS
+      run: kubectl apply -f manifests/elasticsearch-deploy.yaml
+        kubectl apply -f manifests/elasticsearch-service.yaml
+   
+spec:
+      containers:
+      - name: fastapi-deployment
+        image: azadeh7049/capstone
+        ports:
+        - containerPort: 8000
+     
