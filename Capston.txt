@@ -1,0 +1,15 @@
+Capston
+
+docker build -t python-imdb .
+docker tag python-imdb user-name/capstone:tag
+docker push user-name/capstone:tag
+
+docker build -t fastapi-demo .
+
+
+eksctl create cluster --name Kubernetes-capstone --region us-east-1 --node-type t3.micro --nodes-min 2 --nodes-max 2
+
+eksctl delete cluster --name Kubernetes-capstone --region us-east-1 
+
+
+To deploy a Kubernetes cluster on our VPC and deploy our application image within the cluster, we need to set up the Kubernetes cluster: We can use a managed Kubernetes service like Amazon EKS, kops or kubeadm
