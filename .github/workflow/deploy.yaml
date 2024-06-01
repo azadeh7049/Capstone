@@ -26,16 +26,10 @@ jobs:
           tags: azadeh/capstone:latest
 
       - name: update kubeconfig
-        run: aws eks update-kubeconfig --name $EKS_CLUSTER_NAME --region $AWS_REGION
+        run: aws eks update-kubeconfig --name ${{EKS_CLUSTER_NAME }} --region ${{AWS_REGION}}
 
-    - name: Deploy to EKS
-      run: kubectl apply -f manifests/elasticsearch-deploy.yaml
+      - name: Deploy to EKS
+      run: 
+        kubectl apply -f manifests/elasticsearch-deploy.yaml
         kubectl apply -f manifests/elasticsearch-service.yaml
    
-spec:
-      containers:
-      - name: fastapi-deployment
-        image: azadeh7049/capstone
-        ports:
-        - containerPort: 8000
-     
