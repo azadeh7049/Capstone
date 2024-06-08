@@ -25,7 +25,7 @@ jobs:
           push: true
           tags: azadeh7049/capstone:latest
   
-          build:
+  build:
     
     name: Deployment
     runs-on: ubuntu-latest
