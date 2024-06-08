@@ -13,3 +13,6 @@ eksctl delete cluster --name Kubernetes-capstone --region us-east-1
 
 
 To deploy a Kubernetes cluster on our VPC and deploy our application image within the cluster, we need to set up the Kubernetes cluster: We can use a managed Kubernetes service like Amazon EKS, kops or kubeadm
+
+
+DevOps engineers build this conveyor bridge but what does it mean? It means they create a file to automate configurations, to authenticate, data transfer, deploying, setting up the security and even more based on needs. Everything in a file that takes a few seconds to be done. To achieve this goal they use different tools like GitHub Actions 
